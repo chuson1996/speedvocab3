@@ -13,7 +13,6 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
-import { initialize as initalizeIsInstructionRead } from 'redux/modules/isInstructionRead';
 import getRoutes from './routes';
 
 const client = new ApiClient();
@@ -21,21 +20,6 @@ const _browserHistory = useScroll(() => browserHistory)();
 const dest = document.getElementById('content');
 const store = createStore(_browserHistory, client, window.__data);
 const history = syncHistoryWithStore(_browserHistory, store);
-
-// function initSocket() {
-//   const socket = io('', {path: '/ws'});
-//   socket.on('news', (data) => {
-//     console.log(data);
-//     socket.emit('my other event', { my: 'data from client' });
-//   });
-//   socket.on('msg', (data) => {
-//     console.log(data);
-//   });
-
-//   return socket;
-// }
-
-// global.socket = initSocket();
 
 const component = (
   <Router render={(props) =>
@@ -71,7 +55,3 @@ if (__DEVTOOLS__ && !window.devToolsExtension) {
     dest
   );
 }
-
-setTimeout(() => {
-  store.dispatch(initalizeIsInstructionRead());
-});

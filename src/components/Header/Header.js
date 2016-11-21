@@ -2,19 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
-import {connect} from 'react-redux';
-import { unReadInstruction } from 'redux/modules/isInstructionRead';
+// import {connect} from 'react-redux';
 import c from 'classnames';
 import get from 'lodash/get';
 import {IndexLinkContainer} from 'react-router-bootstrap';
 
-@connect(null, {
-  unReadInstruction
-})
+// @connect(null, {
+// })
 export default class Header extends Component {
-  static propTypes = {
-    unReadInstruction: PropTypes.func
-  };
+  // static propTypes = {
+  //   unReadInstruction: PropTypes.func
+  // };
 
   componentDidMount() {
     this.scrollListener = () => {
@@ -43,13 +41,13 @@ export default class Header extends Component {
     return (
       <Navbar fixedTop className={styles.header}>
         <Nav pullRight className={c('hidden-xs', styles.navNormalScreen, { [styles.scrolled]: get(this.state, 'scrolled')})}>
-          <IndexLinkContainer to={`/`} activeClassName={`undefined`}>
+          <IndexLinkContainer to={`/`}>
             <NavItem>Search</NavItem>
           </IndexLinkContainer>
-          <IndexLinkContainer to={'/'} activeClassName={`undefined`}>
-            <NavItem onClick={this.props.unReadInstruction}>How to use</NavItem>
+          <IndexLinkContainer to={'/'}>
+            <NavItem >How to use</NavItem>
           </IndexLinkContainer>
-          <IndexLinkContainer to={'/about'} activeClassName={`undefined`}>
+          <IndexLinkContainer to={'/about'}>
             <NavItem>About</NavItem>
           </IndexLinkContainer>
         </Nav>

@@ -117,38 +117,6 @@ export function login(name) {
   };
 }
 
-export function fbLogin() {
-  return {
-    types: [FB_LOGIN, FB_LOGIN_SUCCESS, FB_LOGIN_FAIL],
-    promise: () => new Promise((resolve, reject) => {
-      FB.getLoginStatus((response) => {
-        if (response.status === 'connected') {
-          return resolve(response.authResponse);
-        }
-
-        FB.login(
-          (res) => {
-            if (!res.authResponse) {
-              return reject('User cancelled');
-            }
-
-            return resolve(res.authResponse);
-          },
-          {
-            scope: [
-              'public_profile',
-              'user_about_me',
-              'email',
-              'user_photos',
-              'user_posts'
-            ].join(',')
-          }
-        );
-      });
-    })
-  };
-}
-
 export function logout() {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],

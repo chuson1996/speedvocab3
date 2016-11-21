@@ -37,7 +37,6 @@ export default (/* store */) => {
     <Route path="/" component={App}>
       { /* Home (main) route */ }
       <IndexRoute component={Home}/>
-      <Route path="/instruction" component={Instruction}/>
       <Route path="/about" component={About}/>
 
       { /* Routes requiring login */ }

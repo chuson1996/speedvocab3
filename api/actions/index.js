@@ -4,6 +4,6 @@
 // export logout from './logout';
 // export * as widget from './widget/index';
 // export * as survey from './survey/index';
-export loadTags from './loadTags';
-export getMetaData from './getMetaData';
-export postSuggestion from './postSuggestion';
+// export loadTags from './loadTags';
+// export getMetaData from './getMetaData';
+// export postSuggestion from './postSuggestion';

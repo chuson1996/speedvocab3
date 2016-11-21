@@ -14,11 +14,9 @@ module.exports = Object.assign({
   port: process.env.PORT,
   apiHost: process.env.APIHOST || '0.0.0.0',
   apiPort: process.env.APIPORT,
-  domain: environment.isProduction ? 'https://frodev.herokuapp.com' : 'http://localhost:3000',
-  mongoDB: process.env.MONGO_DB || 'mongodb://localhost:27017/codeadvisor',
-  fbSDK: environment.isProduction ? '/fb-sdk.js' : '/fb-sdk.dev.js',
+  domain: environment.isProduction ? 'https://speedvocab2.herokuapp.com' : 'http://localhost:3000',
   app: {
-    title: 'FroDev',
+    title: 'SpeedVocab',
     link: [
       {
         rel: 'stylesheet',
@@ -37,18 +35,18 @@ module.exports = Object.assign({
         type: 'text/javascript'
       }
     ],
-    description: 'The richest bookmark of front-end resources',
+    description: 'Quizlet complementary',
     head: {
-      titleTemplate: 'FroDev: %s',
+      titleTemplate: 'SpeedVocab: %s',
       meta: [
         {name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1'},
-        {name: 'description', content: 'The richest bookmark of front-end resources'},
+        {name: 'description', content: 'Quizlet complementary'},
         {charset: 'utf-8'},
-        {property: 'og:site_name', content: 'The richest bookmark of front-end resources'},
-        {property: 'og:image', content: 'https://frodev.herokuapp.com/logo.jpg'},
+        {property: 'og:site_name', content: 'Quizlet complementary'},
+        {property: 'og:image', content: 'https://speedvocab2.herokuapp.com/logo.jpg'},
         {property: 'og:locale', content: 'fi_FI'},
-        {property: 'og:title', content: 'FroDev'},
-        {property: 'og:description', content: 'The richest bookmark of front-end resources'},
+        {property: 'og:title', content: 'SpeedVocab'},
+        {property: 'og:description', content: 'Quizlet complementary'},
         {property: 'og:card', content: 'summary'},
         {property: 'og:site', content: '@chuson1996'},
         {property: 'og:creator', content: '@chuson1996'},
