@@ -12,7 +12,7 @@ const environment = {
 /* Variable used in front-end */
 const websiteUrl = () => (!environment.isProduction || __DEVELOPMENT__) ?
   'http://' + (process.env.HOST || 'localhost') + ':' + (process.env.PORT || 3000) :
-  'http://speedvocab2.herokuapp.com';
+  'https://speedvocab2.herokuapp.com';
 
 const quizletCreds = () => {
   if (!environment.isProduction || __DEVELOPMENT__) {
