@@ -1,0 +1,19 @@
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss';
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss';
+@import '../../theme/variables.scss';
+
+.sets {
+  margin: 12px;
+  margin-top: $header-height + 12px;
+  .set {
+    background-color: $white;
+    min-height: 110px;
+    color: $brand-primary2;
+    text-align: center;
+    padding: 30px;
+    cursor: pointer;
+  }
+  .set + .set {
+    margin-top: 12px;
+  }
+}

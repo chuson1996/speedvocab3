@@ -14,7 +14,9 @@ import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // import last from 'lodash/last';
-import { Footer, Header } from 'components';
+import {
+  // Footer,
+  Header } from 'components';
 import ProgressBar from 'react-progress-bar-plus';
 import { isGlobalLoading } from 'redux/middleware/clientMiddleware';
 // import random from 'lodash/random';
@@ -38,7 +40,9 @@ export default class App extends Component {
     // logout: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired,
     location: PropTypes.object,
-    isGlobalLoading: PropTypes.bool
+    route: PropTypes.object,
+    isGlobalLoading: PropTypes.bool,
+    params: PropTypes.object,
   };
 
   static contextTypes = {
@@ -46,12 +50,10 @@ export default class App extends Component {
   };
 
   render() {
-    // const {
-    //   // user,
-    //   location: { pathname }
-    // } = this.props;
+    const { location: { pathname: path },
+      params: { setId } } = this.props;
+
     const styles = require('./App.scss');
-    // const segment = last(pathname.split('/')) || 'root';
     const { isGlobalLoading: isLoading } = this.props;
 
     return (
@@ -63,26 +65,13 @@ export default class App extends Component {
           spinner={false} />
 
         <Helmet {...config.app}/>
-        {/* <div id="fb-root"></div>
-        <script src={config.fbSDK}></script> */}
         <div className={styles.appContent}>
-          <Header />
+          {/* Header is not available on Home page */}
+          { path !== '/' && <Header setId={setId} />}
           {this.props.children}
-          {/* <ReactCSSTransitionGroup
-            transitionName={{
-              enter: styles['page-enter'],
-              enterActive: styles['page-enter-active'],
-              leave: styles['page-leave'],
-              leaveActive: styles['page-leave-active']
-            }}
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}>
-            {React.cloneElement(this.props.children, {key: segment})}
-          </ReactCSSTransitionGroup> */}
         </div>
-        {/* <InfoBar/> */}
 
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     );
   }

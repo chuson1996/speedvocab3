@@ -1,15 +1,17 @@
 import React from 'react';
 import {
+  withRouter,
   IndexRoute,
   Route} from 'react-router';
 // import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import {
     App,
-    // Home,
     About,
     NotFound,
     Home,
-    Instruction
+    LoginSuccess,
+    Sets,
+    Terms,
   } from 'containers';
 
 export default (/* store */) => {
@@ -38,18 +40,9 @@ export default (/* store */) => {
       { /* Home (main) route */ }
       <IndexRoute component={Home}/>
       <Route path="/about" component={About}/>
-
-      { /* Routes requiring login */ }
-      {/* <Route onEnter={requireLogin}>
-        <Route path="chat" component={Chat}/>
-        <Route path="loginSuccess" component={LoginSuccess}/>
-      </Route> */}
-
-      { /* Routes */ }
-      {/* <Route path="about" component={About}/>
-      <Route path="login" component={Login}/>
-      <Route path="survey" component={Survey}/>
-      <Route path="widgets" component={Widgets}/> */}
+      <Route path="/loginQuizletSuccess" component={LoginSuccess}/>
+      <Route path="/sets" component={Sets}/>
+      <Route path="/sets/:setId" component={withRouter(Terms)}/>
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

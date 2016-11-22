@@ -1,0 +1,28 @@
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss';
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss';
+@import '../../theme/variables.scss';
+
+.terms {
+  margin: 12px;
+  margin-top: $header-height + 12px;
+  .term {
+    background-color: $white;
+    color: $brand-primary;
+    cursor: pointer;
+    padding: 12px;
+    padding-bottom: 27px;
+
+    .image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .word {
+      margin-bottom: 20px;
+    }
+  }
+  .term + .term {
+    margin-top: 12px;
+  }
+}

@@ -1,5 +1,6 @@
-// export loadInfo from './loadInfo';
-// export loadAuth from './loadAuth';
+export loadTerms from './loadTerms';
+export loadAuth from './loadAuth';
+export loadSets from './loadSets';
 // export login from './login';
 // export logout from './logout';
 // export * as widget from './widget/index';

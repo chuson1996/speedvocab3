@@ -1,16 +1,11 @@
-/* globals FB */
-const LOAD = 'redux-example/auth/LOAD';
-const LOAD_SUCCESS = 'redux-example/auth/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/auth/LOAD_FAIL';
-const LOGIN = 'redux-example/auth/LOGIN';
-const LOGIN_SUCCESS = 'redux-example/auth/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
-const FB_LOGIN = 'redux-example/auth/FB_LOGIN';
-const FB_LOGIN_SUCCESS = 'redux-example/auth/FB_LOGIN_SUCCESS';
-const FB_LOGIN_FAIL = 'redux-example/auth/FB_LOGIN_FAIL';
-const LOGOUT = 'redux-example/auth/LOGOUT';
-const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
-const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
+import config from 'config';
+
+const LOAD = 'speed-vocab/auth/LOAD';
+const LOAD_SUCCESS = 'speed-vocab/auth/LOAD_SUCCESS';
+const LOAD_FAIL = 'speed-vocab/auth/LOAD_FAIL';
+const LOGOUT = 'speed-vocab/auth/LOGOUT';
+const LOGOUT_SUCCESS = 'speed-vocab/auth/LOGOUT_SUCCESS';
+const LOGOUT_FAIL = 'speed-vocab/auth/LOGOUT_FAIL';
 
 const initialState = {
   loaded: false
@@ -28,7 +23,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
-        user: action.result
+        data: action.result
       };
     case LOAD_FAIL:
       return {
@@ -36,42 +31,6 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         loaded: false,
         error: action.error
-      };
-    case LOGIN:
-      return {
-        ...state,
-        loggingIn: true
-      };
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        loggingIn: false,
-        user: action.result
-      };
-    case LOGIN_FAIL:
-      return {
-        ...state,
-        loggingIn: false,
-        user: null,
-        loginError: action.error
-      };
-    case FB_LOGIN:
-      return {
-        ...state,
-        loggingIn: true
-      };
-    case FB_LOGIN_SUCCESS:
-      return {
-        ...state,
-        loggingIn: false,
-        fbUser: action.result
-      };
-    case FB_LOGIN_FAIL:
-      return {
-        ...state,
-        loggingIn: false,
-        user: null,
-        loginError: action.error
       };
     case LOGOUT:
       return {
@@ -99,22 +58,30 @@ export function isLoaded(globalState) {
   return globalState.auth && globalState.auth.loaded;
 }
 
-export function load() {
+export function load(code) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/loadAuth')
+    promise: (client) => client.post('/loadAuth', { data: { code }})
+      .then((res) => {
+        const accessToken = res.access_token;
+        window.localStorage.setItem('accessToken', accessToken);
+      })
   };
 }
 
-export function login(name) {
-  return {
-    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/login', {
-      data: {
-        name: name
-      }
-    })
-  };
+// export function loginSuccess(token) {
+//   window.localStorage.setItem('quizletToken', token);
+//   return {
+//     type: LOGIN_SUCCESS
+//   };
+// }
+
+/* This is not a Redux action */
+export function quizletAuthorize() {
+  const redirectUri = config.auth.quizlet.redirectUri;
+  const scope = ['read', 'write_set', 'write_group'].join(' ');
+  const clientId = config.auth.quizlet.clientId;
+  window.location.href = `https://quizlet.com/authorize?scope=${scope}&client_id=${clientId}&response_type=code&state=authenticated&redirect_uri=${redirectUri}`;
 }
 
 export function logout() {

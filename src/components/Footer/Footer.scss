@@ -2,7 +2,7 @@
 @import '../../theme/variables.scss';
 
 .footer {
-  color: $white;
+  // color: $white;
   margin-bottom: 0;
   :global(.fa) {
     font-size: 2em;
@@ -13,9 +13,9 @@
     padding-bottom: 9px;
   }
   .footerBtn {
-    color: $white;
+    // color: $white;
     &:hover {
-      background-color: lighten($navbar-inverse-bg, 5%);
+      background-color: lighten($brand-info, 5%);
     }
   }
 }

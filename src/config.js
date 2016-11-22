@@ -9,32 +9,44 @@ const environment = {
   }
 }[process.env.NODE_ENV || 'development'];
 
+/* Variable used in front-end */
+const websiteUrl = () => (!environment.isProduction || __DEVELOPMENT__) ?
+  'http://' + (process.env.HOST || 'localhost') + ':' + (process.env.PORT || 3000) :
+  'http://speedvocab2.herokuapp.com';
+
 module.exports = Object.assign({
   host: process.env.HOST || '0.0.0.0',
   port: process.env.PORT,
   apiHost: process.env.APIHOST || '0.0.0.0',
   apiPort: process.env.APIPORT,
   domain: environment.isProduction ? 'https://speedvocab2.herokuapp.com' : 'http://localhost:3000',
+  auth: {
+    quizlet: {
+      clientId: 'U9zGqgKByB',
+      clientSecret: 'gceUm37RfjkgeQw6nJuQKj',
+      get redirectUri() { return websiteUrl() + '/loginQuizletSuccess'; }
+    }
+  },
   app: {
     title: 'SpeedVocab',
     link: [
       {
         rel: 'stylesheet',
         type: 'text/css',
-        href: '//assets.juicer.io/embed.css',
+        href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
         media: 'all'
       }
     ],
-    script: [
-      {
-        src: '//assets.juicer.io/embed.js',
-        type: 'text/javascript'
-      },
-      {
-        src: '/ga.js',
-        type: 'text/javascript'
-      }
-    ],
+    // script: [
+    //   {
+    //     src: '//assets.juicer.io/embed.js',
+    //     type: 'text/javascript'
+    //   },
+    //   {
+    //     src: '/ga.js',
+    //     type: 'text/javascript'
+    //   }
+    // ],
     description: 'Quizlet complementary',
     head: {
       titleTemplate: 'SpeedVocab: %s',

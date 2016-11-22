@@ -16,17 +16,15 @@ $gray:                   #A2A2A2;
 $gray-light:             rgba(162, 162, 162, 0.37);
 $gray-lighter:           rgba(245, 245, 245, 0.94);
 $granite-gray:           #686963;
-$brand-sea-serpent:      #66CED6;
-$brand-independence:     #3D5467;
-$brand-dark-terra-cotta: #DB5461;
-$brand-white-smoke:      rgba(245, 245, 245, 0.94);
 $white:                  #F9F9F9;
 
-$brand-primary:         $brand-independence;
-$brand-success:         #06D6A0;
-$brand-info:            $brand-sea-serpent;
-$brand-warning:         #f0ad4e !default;
-$brand-danger:          $brand-dark-terra-cotta;
+$brand-primary: #002C50;
+$brand-success: #B8D5B8;
+$brand-info: #3d6fd9;
+$brand-warning: #DC602E;
+$brand-danger: #BC412B;
+$brand-default: #D7B49E;
+$brand-primary2: #3E6990;
 
 $headings-font-weight: 600;
 $text-color: #333;
@@ -36,7 +34,7 @@ $link-color:            $brand-info;
 
 $font-size-h3:            ceil(($font-size-base * 1.5));
 
-$body-bg: $white;
+$body-bg: lighten($brand-info, 38%);
 
 $padding-base-vertical: 20px;
 $line-height-base: 1.375;
@@ -46,7 +44,7 @@ $border-radius-large: 2px;
 $border-radius-small: 0;
 $border-box-shadow-color: rgba(0, 0, 0, 0.075);
 
-$input-border: $brand-independence;
+$input-border: $brand-info;
 $input-bg: $body-bg;
 
 // Panel
@@ -55,7 +53,7 @@ $panel-bg: transparent;
 
 // Pagination
 $pagination-bg: transparent;
-$pagination-color: $brand-independence;
+$pagination-color: $brand-primary;
 $pagination-active-color: $brand-info;
 $pagination-active-bg: transparent;
 $pagination-hover-bg: transparent;
@@ -64,13 +62,17 @@ $pagination-disabled-bg: transparent;
 // Footer
 $footer-height: 51px;
 
+// Header
+$header-height: 66px;
+
 // Navbar
-$navbar-default-bg: $brand-white-smoke;
+$navbar-default-bg: darken($body-bg, 4%);
 $navbar-default-link-color: $brand-primary;
 $navbar-default-link-active-color: $brand-primary;
 $navbar-padding-vertical: 32px;
 $navbar-inverse-color: $white;
-$navbar-inverse-bg: $brand-primary;
+$navbar-inverse-bg: $brand-info;
+$navbar-inverse-link-color: $white;
 
 // Button
 $btn-default-color: $white;
@@ -78,4 +80,4 @@ $btn-default-bg: $gray;
 $btn-default-border: $gray;
 
 // Type
-$state-danger-text: $brand-danger;
+$blockquote-border-color: $brand-primary2;

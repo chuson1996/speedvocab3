@@ -10,109 +10,6 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900');
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
-// Juicer
-.juicer-feed li.feed-item.j-video a.j-image:before {
-  z-index: 2 !important;
-}
-
-.text-gray-base {
-  color: $gray-base;
-}
-
-.gray-light {
-  color: $gray-light;
-}
-.gray {
-  color: $gray;
-}
-
-.bodyContainer {
-  margin-top: 86px;
-  margin-bottom: $footer-height;
-}
-
-.animatedEnter {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  opacity: 0;
-  @include transition(opacity .3s ease-in);
-  &.bounceInLeft {
-    opacity: 1;
-  }
-}
-
-html,body
-{
-  // width: 100%;
-  // height: 100%;
-  // margin: 0px;
-  // padding: 0px;
-  overflow-x: hidden;
-}
-
-.navbar-default {
-  @include box-shadow(0 0 7px 0 $gray)
-}
-
-.navbar-brand {
-  position: relative;
-  padding-left: 50px;
-}
-
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-  // color: #33e0ff;
-  background-color: transparent;
-}
-
-.navbar {
-  border: 0;
-}
-
-.form-control {
-  // http://stackoverflow.com/questions/3062968/remove-textarea-inner-shadow-on-mobile-safari-iphone
-  -webkit-appearance: none;
-  border: 0;
-  padding-left: 0;
-  padding-bottom: 16px;
-  @include box-shadow(none);
-  border-bottom: 2px solid $input-border;
-  @include transition(border-bottom .3s ease-in);
-  &:focus {
-    outline: 0;
-    border: 0;
-    @include box-shadow(none);
-    border-bottom: 2px solid $brand-info;
-  }
-}
-
-.input-group.tags-input-group {
-  .form-control + .input-group-btn {
-    @include transition(border-bottom .3s ease-in);
-  }
-  .form-control:focus + .input-group-btn {
-    @include box-shadow(none);
-    border-bottom: 2px solid $brand-info;
-  }
-  .input-group-btn {
-    @include box-shadow(none);
-    border-bottom: 2px solid $input-border;
-    .btn {
-      border: 0;
-      color: $gray-light;
-      background-color: $body-bg;
-      @include box-shadow(none);
-
-      &:hover,
-      &:focus,
-      &:active {
-        outline-width: 0;
-      }
-    }
-  }
-}
-
 @for $i from 0 through 40 {
   .m-l-#{$i} {
     margin-left: 0px + $i;
@@ -128,65 +25,17 @@ html,body
   }
 }
 
-a,
-.link {
-  cursor: pointer;
-
-  &.link-dark {
-    color: $brand-independence;
+// Navbar
+.navbar-header .navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0;
   }
-  // &:hover {
-  //   text-decoration: none;
-  // }
 }
-
 
 // Button
 .btn {
-  padding-top: 11px;
-  padding-bottom: 11px;
-  border-width: 0px;
-  font-weight: lighter;
-  > i.fa {
-    margin-right: 5px;
-    // font-size: 2em;
-  }
-}
-
-// Button circle
-.btn.btn-circle {
-  border-radius: 50%;
-  width: 3em;
-  height: 3em;
-  position: relative;
-  > i {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-}
-
-.panel {
   border-width: 0;
-  @include box-shadow(none);
-}
-
-.pagination {
-  > li {
-    > a,
-    > span {
-      border-width: 0;
-    }
-  }
-
-  > .active > a,
-  > .active > span {
-    &,
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
 }

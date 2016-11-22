@@ -13,7 +13,7 @@ export default class Footer extends Component {
       <div>
         <Navbar inverse className={`${styles.footer} hidden-xs`}>
           <Nav>
-            <NavItem>© 2016 FroDev</NavItem>
+            <NavItem>© 2016 SpeedVocab</NavItem>
           </Nav>
         </Navbar>
         <Navbar fixedBottom inverse className={`${styles.footer} visible-xs`}>
