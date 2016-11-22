@@ -15,7 +15,7 @@ const websiteUrl = () => (!environment.isProduction || __DEVELOPMENT__) ?
   'https://speedvocab2.herokuapp.com';
 
 const quizletCreds = () => {
-  if (!environment.isProduction || __DEVELOPMENT__) {
+  if (!environment.isProduction) {
     return {
       clientId: 'U9zGqgKByB',
       clientSecret: 'gceUm37RfjkgeQw6nJuQKj'
