@@ -3,6 +3,7 @@ import { load as loadSets } from 'redux/modules/sets';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-async-connect';
 import { push } from 'react-router-redux';
+import c from 'classnames';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -36,15 +37,18 @@ export default class Sets extends Component {
     const { sets, loading, loaded } = this.props;
 
     return (
-      <div className={styles.sets}>
-        { loaded && sets.map((set, i) =>
-          <div
-            key={i}
-            className={styles.set}
-            onClick={() => this.props.push(`/sets/${set.id}`)}>
-            <h2>{set.title}</h2>
-          </div>
-        )}
+      <div className="container">
+        <div className={c(styles.sets)}>
+          <h1 className={c('hidden-xs', 'text-center', styles.setTitle)}>Your sets</h1>
+          { loaded && sets.map((set, i) =>
+            <div
+              key={i}
+              className={styles.set}
+              onClick={() => this.props.push(`/sets/${set.id}`)}>
+              <h2>{set.title}</h2>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

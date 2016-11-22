@@ -5,6 +5,11 @@
 .sets {
   margin: 12px;
   margin-top: $header-height + 12px;
+  .setTitle {
+    color: $brand-primary;
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
   .set {
     background-color: $white;
     min-height: 110px;

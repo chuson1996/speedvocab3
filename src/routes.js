@@ -3,7 +3,7 @@ import {
   withRouter,
   IndexRoute,
   Route} from 'react-router';
-// import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
+import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import {
     App,
     About,
@@ -14,23 +14,25 @@ import {
     Terms,
   } from 'containers';
 
-export default (/* store */) => {
-  // const requireLogin = (nextState, replace, cb) => {
-  //   function checkAuth() {
-  //     const { auth: { user }} = store.getState();
-  //     if (!user) {
-  //       // oops, not logged in, so can't be here!
-  //       replace('/');
-  //     }
-  //     cb();
-  //   }
+export default (store) => {
+  const requireLogin = (nextState, replace, cb) => {
+    function checkAuth() {
+      const { auth: { data }} = store.getState();
+      if (!data) {
+        // oops, not logged in, so can't be here!
+        replace('/');
+      }
+      cb();
+    }
 
-  //   if (!isAuthLoaded(store.getState())) {
-  //     store.dispatch(loadAuth()).then(checkAuth);
-  //   } else {
-  //     checkAuth();
-  //   }
-  // };
+    if (!isAuthLoaded(store.getState())) {
+      store.dispatch(loadAuth())
+        .then(checkAuth)
+        .catch(checkAuth);
+    } else {
+      checkAuth();
+    }
+  };
 
   /**
    * Please keep routes in alphabetical order
@@ -41,8 +43,8 @@ export default (/* store */) => {
       <IndexRoute component={Home}/>
       <Route path="/about" component={About}/>
       <Route path="/loginQuizletSuccess" component={LoginSuccess}/>
-      <Route path="/sets" component={Sets}/>
-      <Route path="/sets/:setId" component={withRouter(Terms)}/>
+      <Route path="/sets" component={Sets} onEnter={requireLogin}/>
+      <Route path="/sets/:setId" component={withRouter(Terms)} onEnter={requireLogin}/>
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

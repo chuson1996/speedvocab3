@@ -16,6 +16,7 @@ import { asyncConnect } from 'redux-async-connect';
 // import last from 'lodash/last';
 import {
   // Footer,
+  SubHeader,
   Header } from 'components';
 import ProgressBar from 'react-progress-bar-plus';
 import { isGlobalLoading } from 'redux/middleware/clientMiddleware';
@@ -68,6 +69,7 @@ export default class App extends Component {
         <div className={styles.appContent}>
           {/* Header is not available on Home page */}
           { path !== '/' && <Header setId={setId} />}
+          { path !== '/' && <SubHeader setId={setId} />}
           {this.props.children}
         </div>
 

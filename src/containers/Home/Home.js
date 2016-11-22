@@ -17,7 +17,7 @@ export default class Home extends Component {
     const styles = require('./Home.scss');
 
     return (
-      <div className={`container ${styles.home}`}>
+      <div className={`${styles.home}`}>
         <div className={`${styles.masthead}`}>
           <h1>SpeedVocab</h1>
 

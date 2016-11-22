@@ -4,8 +4,8 @@ export default function loadTerms(req) {
   const setId = req.query.setId;
   if (!setId) {
     return Promise.reject({
-      status: 400,
-      message: 'setId is undefined'
+      status: 401,
+      message: 'Access token is expired'
     });
   }
 

@@ -14,6 +14,20 @@ const websiteUrl = () => (!environment.isProduction || __DEVELOPMENT__) ?
   'http://' + (process.env.HOST || 'localhost') + ':' + (process.env.PORT || 3000) :
   'http://speedvocab2.herokuapp.com';
 
+const quizletCreds = () => {
+  if (!environment.isProduction || __DEVELOPMENT__) {
+    return {
+      clientId: 'U9zGqgKByB',
+      clientSecret: 'gceUm37RfjkgeQw6nJuQKj'
+    };
+  }
+
+  return {
+    clientId: 'g7NYsrKNUw',
+    clientSecret: 'P8NK3xGpkjXhNJWYFp4DMe'
+  };
+};
+
 module.exports = Object.assign({
   host: process.env.HOST || '0.0.0.0',
   port: process.env.PORT,
@@ -22,8 +36,8 @@ module.exports = Object.assign({
   domain: environment.isProduction ? 'https://speedvocab2.herokuapp.com' : 'http://localhost:3000',
   auth: {
     quizlet: {
-      clientId: 'U9zGqgKByB',
-      clientSecret: 'gceUm37RfjkgeQw6nJuQKj',
+      get clientId() { return quizletCreds().clientId; },
+      get clientSecret() { return quizletCreds().clientSecret; },
       get redirectUri() { return websiteUrl() + '/loginQuizletSuccess'; }
     }
   },

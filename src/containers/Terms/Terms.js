@@ -13,9 +13,14 @@ import last from 'lodash/last';
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
 
+    const path = get(getState(), 'routing.locationBeforeTransitions.pathname');
+    const setId = last(path.split('/'));
+
     if (!areSetsLoaded(getState())) {
-      promises.push(dispatch(loadSets()));
+      promises.push(dispatch(loadSets(setId)));
     }
+
+    dispatch(_loadTerms(setId));
 
     return Promise.all(promises);
   }
@@ -40,11 +45,6 @@ export default class Terms extends Component {
     loadTerms: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    const { loadTerms, setId } = this.props;
-    loadTerms(setId);
-  }
-
   render() {
     const styles = require('./Terms.scss');
     const { terms, loaded } = this.props;
@@ -63,14 +63,20 @@ export default class Terms extends Component {
     };
 
     return (
-      <div className={c(styles.terms)}>
-        { loaded && terms.map((item, id) =>
-          <div key={id} className={c(styles.term)}>
-            <h2 className={styles.word}>{item.term}</h2>
-            <Markdown source={format(item.definition)} />
-            <img className={styles.image} src={get(item, 'image.url')}/>
-          </div>
-        )}
+      <div className="container">
+        <div className={c(styles.terms)}>
+          { loaded && terms.map((item, id) =>
+            <div key={id} className={c(styles.term)}>
+              <div className={c(styles.side1)}>
+                <h2 className={styles.word}>{item.term}</h2>
+                <Markdown source={format(item.definition)} />
+              </div>
+              <div className={c(styles.side2)}>
+                <img className={styles.image} src={get(item, 'image.url')}/>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

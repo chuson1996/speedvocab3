@@ -3,7 +3,10 @@ import request from 'superagent';
 export default function loadSets(req) {
   const { accessToken, userId } = req.session;
   if (!(accessToken && userId)) {
-    return Promise.reject('Access token is expired');
+    return Promise.reject({
+      status: 401,
+      message: 'Access token is expired'
+    });
   }
 
   return new Promise((resolve, reject) => {

@@ -3,12 +3,12 @@
 @import '../../theme/variables.scss';
 
 .terms {
-  margin: 12px;
+  margin-bottom: 12px;
   margin-top: $header-height + 12px;
   .term {
     background-color: $white;
     color: $brand-primary;
-    cursor: pointer;
+    // cursor: pointer;
     padding: 12px;
     padding-bottom: 27px;
 
@@ -20,6 +20,25 @@
 
     .word {
       margin-bottom: 20px;
+    }
+
+    @media (min-width: $container-sm) {
+      display: flex;
+      padding: 40px;
+      transform: scale(.95, .95);
+      @include transition(transform .1s ease-in);
+      &:hover {
+        transform: scale(1, 1);
+      }
+      .side1 {
+        flex-grow: 3;
+      }
+      .side2 {
+      }
+
+      .image {
+        margin-top: 20px;
+      }
     }
   }
   .term + .term {

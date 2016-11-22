@@ -62,10 +62,6 @@ export function load(code) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.post('/loadAuth', { data: { code }})
-      .then((res) => {
-        const accessToken = res.access_token;
-        window.localStorage.setItem('accessToken', accessToken);
-      })
   };
 }
 

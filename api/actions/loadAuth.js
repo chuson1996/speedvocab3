@@ -4,8 +4,29 @@ import config from '../../src/config';
 export default function loadAuth(req) {
   /* Step 2: https://quizlet.com/api/2.0/docs/authorization-code-flow */
   const code = req.body.code;
+
+  const fetchUser = (accessToken, userId) => new Promise((resolve, reject) => {
+    request
+      .get(`https://api.quizlet.com/2.0/users/${userId}`)
+      .set('Authorization', `Bearer ${accessToken}`)
+      .end((error, res) => {
+        if (error) {
+          return reject(error);
+        }
+
+        const response = JSON.parse(res.text);
+        return resolve(response);
+      });
+  });
   if (!code) {
-    return Promise.reject('Code is empty');
+    const { accessToken, userId } = req.session;
+    if (accessToken) {
+      return fetchUser(accessToken, userId);
+    }
+    return Promise.reject({
+      status: 400,
+      message: 'Code is empty'
+    });
   }
 
   const redirectUri = config.auth.quizlet.redirectUri;
@@ -30,7 +51,10 @@ export default function loadAuth(req) {
         req.session.accessToken = response.access_token;
         req.session.userId = response.user_id;
         console.log(req.session);
-        return resolve(response);
+        return resolve({
+          accessToken: req.session.accessToken,
+          userId: req.session.userId
+        });
       });
-  });
+  }).then(({ accessToken, userId }) => fetchUser(accessToken, userId));
 }

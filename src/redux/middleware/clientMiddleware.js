@@ -65,8 +65,6 @@ export default function clientMiddleware(client) {
       actionPromise.then(
         (result) => {
           dispatch(endRequest(REQUEST, randomKey));
-          // setTimeout(() => {
-          // }, 5000);
           return next({...rest, result, type: SUCCESS});
         },
         (error) => {

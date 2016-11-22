@@ -1,0 +1,32 @@
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss';
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss';
+@import '../../theme/variables.scss';
+
+.subHeader {
+  margin-top: $header-height;
+  margin-bottom: -$header-height;
+  text-align: center;
+  color: $brand-info;
+  background-color: transparent !important;
+  border-width: 0;
+  h1, h2, h3, h4, h5, h6 {
+    display: inline-block;
+    font-weight: 400;
+    margin: 36px 0;
+  }
+  .backBtn {
+    cursor: pointer;
+    position: absolute;
+    color: $gray;
+    left: 15px;
+    i:global(.material-icons) {
+      vertical-align: middle;
+      margin-right: 10px;
+      font-size: $font-size-h1;
+    }
+
+    &:hover {
+      color: $gray-dark;
+    }
+  }
+}

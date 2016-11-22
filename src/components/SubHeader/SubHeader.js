@@ -17,7 +17,7 @@ import get from 'lodash/get';
   }),
   { push }
 )
-class Header extends Component {
+class SubHeader extends Component {
   static propTypes = {
     path: PropTypes.string,
     setTitle: PropTypes.string,
@@ -32,37 +32,36 @@ class Header extends Component {
   };
 
   render() {
-    const styles = require('./Header.scss');
+    const styles = require('./SubHeader.scss');
     const { path, setTitle } = this.props;
     let headerTitle = '';
-    let backable = true;
+    let backable = false;
+    let backLabel = '';
 
     if (path === '/sets') {
       backable = false;
       headerTitle = 'Sets';
-    } else if (/^\/sets\/.{1,}$/.test(path)) {
+    } else if (/^\/sets\/\d{1,}$/.test(path)) {
       headerTitle = setTitle;
+      backLabel = 'Sets';
+      backable = true;
     }
 
 
-    return (
-      <Navbar fixedTop inverse className={styles.header}>
-        <Navbar.Header className={c('hidden-xs')}>
-          <Navbar.Brand>
-            <a href="#"><h1><strong>SpeedVocab</strong></h1></a>
-          </Navbar.Brand>
-        </Navbar.Header>
-        <div className={c('visible-xs')}>
-          <a
-            onClick={this.back}
-            className={c(styles.backBtn, { 'hide': !backable })}>
-            <h3><i className={c('material-icons')}>keyboard_arrow_left</i></h3>
-          </a>
-          <h3 className="inline-block">{headerTitle}</h3>
-        </div>
+    return backable ? (
+      <Navbar className={c(styles.subHeader, 'hidden-xs')}>
+        <a
+          onClick={this.back}
+          className={c(styles.backBtn)}>
+          <h1>
+            <i className={c('material-icons')}>keyboard_arrow_left</i>
+            { backLabel }
+          </h1>
+        </a>
+        <h1 className="inline-block">{headerTitle}</h1>
       </Navbar>
-    );
+    ) : null;
   }
 }
 
-export default withRouter(Header);
+export default withRouter(SubHeader);

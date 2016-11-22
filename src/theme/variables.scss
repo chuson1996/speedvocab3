@@ -20,7 +20,7 @@ $white:                  #F9F9F9;
 
 $brand-primary: #002C50;
 $brand-success: #B8D5B8;
-$brand-info: #3d6fd9;
+$brand-info: #0078DA;
 $brand-warning: #DC602E;
 $brand-danger: #BC412B;
 $brand-default: #D7B49E;
@@ -34,7 +34,7 @@ $link-color:            $brand-info;
 
 $font-size-h3:            ceil(($font-size-base * 1.5));
 
-$body-bg: lighten($brand-info, 38%);
+$body-bg: #E5ECF4;
 
 $padding-base-vertical: 20px;
 $line-height-base: 1.375;
@@ -81,3 +81,6 @@ $btn-default-border: $gray;
 
 // Type
 $blockquote-border-color: $brand-primary2;
+
+// Grid
+$grid-gutter-width: 24px;
