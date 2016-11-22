@@ -10,7 +10,7 @@ const environment = {
 }[process.env.NODE_ENV || 'development'];
 
 /* Variable used in front-end */
-const websiteUrl = () => (!environment.isProduction || __DEVELOPMENT__) ?
+const websiteUrl = () => (!environment.isProduction) ?
   'http://' + (process.env.HOST || 'localhost') + ':' + (process.env.PORT || 3000) :
   'https://speedvocab2.herokuapp.com';
 
